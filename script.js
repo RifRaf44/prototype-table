@@ -422,7 +422,7 @@ const data = [
         children: [
             {
                 id: 'eigen-vermogen',
-                label: 'EIGEN VERMOGEN',
+                label: 'Eigen vermogen',
                 code: '10/15',
                 level: 1,
                 isCollapsible: true,
@@ -574,7 +574,7 @@ const data = [
             },
             {
                 id: 'voorzieningen',
-                label: 'VOORZIENINGEN EN UITGESTELDE BELASTINGEN',
+                label: 'Voorzieningen en uitgestelde belastingen',
                 code: '16',
                 level: 1,
                 isCollapsible: true,
@@ -650,7 +650,7 @@ const data = [
             },
             {
                 id: 'schulden',
-                label: 'SCHULDEN',
+                label: 'Schulden',
                 code: '17/49',
                 level: 1,
                 isCollapsible: true,
@@ -911,7 +911,7 @@ const data = [
     },
     {
         id: 'resultatenrekening',
-        label: 'RESULTATENREKENING',
+        label: 'Resultatenrekening',
         code: '',
         level: 0,
         isCollapsible: true,
@@ -920,7 +920,7 @@ const data = [
         children: [
             {
                 id: 'bedrijfsopbrengsten',
-                label: 'I. Bedrijfsopbrengsten',
+                label: 'Bedrijfsopbrengsten',
                 code: '70/76A',
                 level: 1,
                 isCollapsible: true,
@@ -978,7 +978,7 @@ const data = [
             },
             {
                 id: 'bedrijfskosten',
-                label: 'II. Bedrijfskosten',
+                label: 'Bedrijfskosten',
                 code: '60/66A',
                 level: 1,
                 isCollapsible: true,
@@ -1090,7 +1090,7 @@ const data = [
             },
             {
                 id: 'bedrijfswinst',
-                label: 'III. Bedrijfswinst / Bedrijfsverlies',
+                label: 'Bedrijfswinst / bedrijfsverlies',
                 code: '9901',
                 level: 1,
                 isCollapsible: false,
@@ -1099,7 +1099,7 @@ const data = [
             },
             {
                 id: 'financiele-opbrengsten',
-                label: 'IV. Financiële opbrengsten',
+                label: 'Financiële opbrengsten',
                 code: '75/76B',
                 level: 1,
                 isCollapsible: true,
@@ -1157,7 +1157,7 @@ const data = [
             },
             {
                 id: 'financiele-kosten',
-                label: 'V. Financiële kosten',
+                label: 'Financiële kosten',
                 code: '65/66B',
                 level: 1,
                 isCollapsible: true,
@@ -1215,7 +1215,7 @@ const data = [
             },
             {
                 id: 'winst-verlies-boekjaar',
-                label: 'VI. W/V van het boekjaar voor belasting',
+                label: 'W/v van het boekjaar voor belasting',
                 code: '9903',
                 level: 1,
                 isCollapsible: false,
@@ -1224,7 +1224,7 @@ const data = [
             },
             {
                 id: 'uitgestelde-belastingen',
-                label: 'VIbis. A. Onttrekking aan uitgestelde belastingen',
+                label: 'Onttrekking aan uitgestelde belastingen',
                 code: '780',
                 level: 1,
                 isCollapsible: false,
@@ -1233,7 +1233,7 @@ const data = [
             },
             {
                 id: 'overboeking-uitgestelde',
-                label: 'B. Overboeking naar uitgestelde belastingen',
+                label: 'Overboeking naar uitgestelde belastingen',
                 code: '680',
                 level: 1,
                 isCollapsible: false,
@@ -1242,7 +1242,7 @@ const data = [
             },
             {
                 id: 'belastingen-resultaat',
-                label: 'VII. Belastingen op het resultaat',
+                label: 'Belastingen op het resultaat',
                 code: '67/77',
                 level: 1,
                 isCollapsible: true,
@@ -1271,7 +1271,7 @@ const data = [
             },
             {
                 id: 'winst-verlies-boekjaar-na-belasting',
-                label: 'VIII. W/V van het boekjaar',
+                label: 'W/v van het boekjaar',
                 code: '9904',
                 level: 1,
                 isCollapsible: false,
@@ -1280,7 +1280,7 @@ const data = [
             },
             {
                 id: 'onttrekking-belastingvrije',
-                label: 'IX. Onttrekking aan belastingvrije reserve',
+                label: 'Onttrekking aan belastingvrije reserve',
                 code: '789',
                 level: 1,
                 isCollapsible: false,
@@ -1298,7 +1298,7 @@ const data = [
             },
             {
                 id: 'te-bestemmen-winst',
-                label: 'X. Te bestemmen winst / verlies van het bj.',
+                label: 'Te bestemmen winst / verlies van het bj.',
                 code: '9905',
                 level: 1,
                 isCollapsible: false,
