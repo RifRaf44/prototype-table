@@ -208,7 +208,7 @@ const data = [
             },
             {
                 id: 'vlottende-activa',
-                label: 'VLOTTENDE ACTIVA',
+                label: 'Vlottende activa',
                 code: '29/58',
                 level: 1,
                 isCollapsible: true,
@@ -1584,68 +1584,57 @@ function renderTable() {
     const tbody = document.getElementById('tableBody');
     tbody.innerHTML = '';
 
-    function renderRow(row) {
+    function renderRow(row, level = 0) {
         const tr = createRow(row);
         tbody.appendChild(tr);
 
         if (row.isCollapsible && row.children) {
             const childRows = document.createElement('tr');
             childRows.className = 'child-rows';
+            
             const childCell = document.createElement('td');
             childCell.colSpan = 9;
+            
             const childTable = document.createElement('table');
             childTable.className = 'balance-sheet-table';
+            
             const childTbody = document.createElement('tbody');
             
             row.children.forEach(child => {
-                const childTr = createRow(child);
-                childTbody.appendChild(childTr);
-                
-                if (child.isCollapsible && child.children) {
-                    const grandChildRows = document.createElement('tr');
-                    grandChildRows.className = 'child-rows';
-                    const grandChildCell = document.createElement('td');
-                    grandChildCell.colSpan = 9;
-                    const grandChildTable = document.createElement('table');
-                    grandChildTable.className = 'balance-sheet-table';
-                    const grandChildTbody = document.createElement('tbody');
-                    
-                    child.children.forEach(grandChild => {
-                        const grandChildTr = createRow(grandChild);
-                        grandChildTbody.appendChild(grandChildTr);
-                        
-                        if (grandChild.isCollapsible && grandChild.children) {
-                            const greatGrandChildRows = document.createElement('tr');
-                            greatGrandChildRows.className = 'child-rows';
-                            const greatGrandChildCell = document.createElement('td');
-                            greatGrandChildCell.colSpan = 9;
-                            const greatGrandChildTable = document.createElement('table');
-                            greatGrandChildTable.className = 'balance-sheet-table';
-                            const greatGrandChildTbody = document.createElement('tbody');
-                            
-                            grandChild.children.forEach(greatGrandChild => {
-                                const greatGrandChildTr = createRow(greatGrandChild);
-                                greatGrandChildTbody.appendChild(greatGrandChildTr);
-                            });
-                            
-                            greatGrandChildTable.appendChild(greatGrandChildTbody);
-                            greatGrandChildCell.appendChild(greatGrandChildTable);
-                            greatGrandChildRows.appendChild(greatGrandChildCell);
-                            grandChildTbody.appendChild(greatGrandChildRows);
-                        }
-                    });
-                    
-                    grandChildTable.appendChild(grandChildTbody);
-                    grandChildCell.appendChild(grandChildTable);
-                    grandChildRows.appendChild(grandChildCell);
-                    childTbody.appendChild(grandChildRows);
-                }
+                renderNestedRow(child, childTbody);
             });
             
             childTable.appendChild(childTbody);
             childCell.appendChild(childTable);
             childRows.appendChild(childCell);
             tbody.appendChild(childRows);
+        }
+    }
+
+    function renderNestedRow(row, parentTbody) {
+        const tr = createRow(row);
+        parentTbody.appendChild(tr);
+        
+        if (row.isCollapsible && row.children) {
+            const childRows = document.createElement('tr');
+            childRows.className = 'child-rows';
+            
+            const childCell = document.createElement('td');
+            childCell.colSpan = 9;
+            
+            const childTable = document.createElement('table');
+            childTable.className = 'balance-sheet-table';
+            
+            const childTbody = document.createElement('tbody');
+            
+            row.children.forEach(child => {
+                renderNestedRow(child, childTbody);
+            });
+            
+            childTable.appendChild(childTbody);
+            childCell.appendChild(childTable);
+            childRows.appendChild(childCell);
+            parentTbody.appendChild(childRows);
         }
     }
 
