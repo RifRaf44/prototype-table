@@ -1,5 +1,4 @@
 ﻿ACTIVA;
-Aantal maanden;
   I. Oprichtingskosten;20
 VASTE ACTIVA;21/28
  II. Immateriële vaste activa;21
@@ -42,3 +41,108 @@ VIII. Geldbeleggingen;50/53
 IX. Liquide middelen;54/58
 X. Overlopende rekeningen;490/1
 TOTAAL DER ACTIVA;20/58
+;
+                      PASSIVA;
+;
+EIGEN VERMOGEN;10/15
+  I. Kapitaal;10
+    A. Geplaatst kapitaal;100
+    B. Niet-opgevraagd kapitaal       ( - );101
+ II. Uitgiftepremies;11
+III. Herwaarderingsmeerwaarden;12
+IV. Reserves;13
+     A. Wettelijke reserve;130
+     B. Onbeschikbare reserves;131
+         1. Voor eigen aandelen;1310
+         2. Andere;1311
+     C. Belastingvrije reserves;132
+     D. Beschikbare reserves;133
+V. Overgedragen winst (verlies)                     (+)/(-);14
+VI. Kapitaalsubsidies;15
+Voorschot a/d vennoten op verdeling vh netto-actief;19
+VOORZIENINGEN EN UITGESTELDE BELASTINGEN;16
+VII. A. Voorzieningen voor risico's en kosten;160/5
+          1. Pensioenen en soortgelijke verplichtingen;160
+          2. Belastingen;161
+          3. Grote herstellings- en onderhoudswerken;162
+          4. Milieuverplichtingen;163
+          5. Overige risico's en kosten;164/5
+     B. Uitgestelde belastingen;168
+SCHULDEN;17/49
+VIII. Schulden op meer dan één jaar;17
+     A. Financiële schulden;170/4
+         1. Achtergestelde leningen;170
+         2. Niet-achtergestelde obligatieleningen;171
+         3. Leasingschulden en soortgelijke schulden;172
+         4. Kredietinstellingen;173
+         5. Overige leningen;174
+     B. Handelsschulden;175
+         1. Leveranciers;1750
+         2. Te betalen wissels;1751
+     C. Ontvangen vooruitbetalingen op bestellingen;176
+     D. Overige schulden;178/9
+IX. Schulden op ten hoogste één jaar;42/48
+     A. Schulden > 1jaar die binnen het jaar vervallen;42
+    B. Financiële schulden;43
+        1. Kredietinstellingen;430/8
+        2. Overige leningen;439
+   C. Handelsschulden;44
+        1. Leveranciers;440/4
+        2. Te betalen wissels;441
+   D. Ontvangen vooruitbetalingen op bestellingen;46
+   E. Schulden mbt belasting, bezoldiging en soc. lasten;45
+        1. Belastingen;450/3
+        2. Bezoldigingen en sociale lasten;454/9
+   F. Overige schulden;47/48
+X. Overlopende rekeningen;492/3
+TOTAAL VAN DE PASSIVA;10/49
+controle;
+;
+RESULTATENREKENING;
+  I. Bedrijfsopbrengsten;70/76A
+      A. Omzet;70
+      B. Voorraad gib., gp., biu.:toename (afname)           (+)/(-);71
+      C. Geproduceerde vaste activa;72
+      D. Andere bedrijfsopbrengsten;74
+      E. Niet-recurrente bedrijfsopbrengsten;76A
+ II. Bedrijfskosten;60/66A
+     A. Handelsgoederen, grond- en hulpstoffen;60
+       1. Aankopen;600/8
+       2. Voorraad: afname (toename)                               (+)/(-);609
+     B. Diensten en diverse goederen;61
+     C. Bezoldigingen, sociale lasten en pensioenen;62
+     D. Afschrijvingen en waardeverminderingen;630
+     E. Waardeverm. op voorraden, biu. en handelsvord. (+)/(-);631/4
+     F. Voorzieningen voor risico's en kosten                   (+)/(-);635/8
+    G. Andere bedrijfskosten;640/8
+    H. Als herstructureringskosten geactiveerde bedrijfsk.    (-);649
+    I. Niet-recurrente bedrijfskosten;66A
+III. Bedrijfswinst / Bedrijfsverlies                  EBIT;9901
+IV. Financiële opbrengsten;75/76B
+  A  Recurrente financiële opbrengsten;75
+      1. Opbrengsten uit financiële vaste activa;750
+      2. Opbrengsten uit vlottende activa;751
+      3. Andere financiële opbrengsten;752/9
+   B. Niet-recurrente financiële opbrengsten;76B
+V. Financiële kosten;65/66B
+  A  Recurrente financiële kosten;65
+     1. Kosten van schulden;650
+     2. Waardeverminderingen op vlottende activa             (+)/(-);651
+     3. Andere financiële kosten;652/9
+  B  Niet-recurrente financiële kosten;66B
+VI. W/V van het boekjaar voor belasting          (+)/(-);9903
+VIbis. A. Onttrekking aan uitgestelde belastingen;780
+         B. Overboeking naar uitgestelde belastingen;680
+VII. Belastingen op het resultaat                      (+)/(-);67/77
+   A. Belastingen;670/3
+   B. Regularisering van belastingen;77
+VIII. W/V van het boekjaar                               (+)/(-);9904
+IX. Onttrekking aan belastingvrije reserve;789
+     Overboeking naar belastingvrije reserve;689
+X. Te bestemmen winst /  verlies van het bj.;9905
+Uit te keren winst;694/7
+   1. Vergoeding kapitaal;694
+   2. Bestuurders of zaakvoerders;695
+   3. Werknemers;695
+   4. Andere rechthebbenden;697
+controle;

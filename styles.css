@@ -1,0 +1,249 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.5;
+    color: #333;
+}
+
+.container {
+    margin: 0 24px 0 24px;
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #1976d2;
+}
+
+.table-container {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+}
+
+.balance-sheet-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.balance-sheet-table th,
+.balance-sheet-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+.balance-sheet-table .toprow th{
+    top:0;
+    height:40px;
+    font-size: 16px;
+    line-height: 24px;
+}
+.balance-sheet-table th {
+    background-color: #fff;
+    font-weight: 600;
+    border-bottom: 2px solid #e0e0e0;
+    position: sticky;
+    top: 40px;
+    z-index: 1;
+}
+
+.icon-column {
+    width: 48px;
+    text-align: center;
+}
+
+.code-column {
+    width: 100px;
+}
+
+.description-column {
+    width: 30%;
+    padding-left: 8px;
+    padding-right: 8px;
+    text-transform: capitalize;
+}
+
+td.year-column , th.year-column {
+    width: 120px;
+    text-align: right;
+}
+
+td.edit-column , th.edit-column {
+    width: 150px;
+    text-align: right;
+}
+
+/* Level 0 (Headers) */
+.row-level-0 {
+    background-color: #e3f2fd;
+}
+
+.row-level-0 th {
+    font-weight: 600;
+/* Secondary/Sky/Sky200 */
+background: #DFEDF8;
+/* Primary/Gray200 */
+border-bottom: 1px solid #D9D9D9;
+
+}
+
+td, th {
+    border-right: 1px solid #D9D9D9;
+}
+td:first-child, th:first-child {
+    border-right: none;
+}
+
+/* Level 1 */
+.row-level-1 {
+    background-color: #EDEDF5;
+}
+
+.row-level-1 td:nth-child(3) {
+    padding-left: 8px;
+}
+
+/* Level 2 */
+.row-level-2 {
+    background-color: #ffffff;
+    font-weight: 600;
+}
+.row-level-2 td:nth-child(3) {
+    padding-left: 16px;
+}
+
+.row-level-3 {
+    background-color: #f9f9f9;
+}
+.row-level-3 td:nth-child(3) {
+    padding-left: 24px;
+}
+.row-level-4 td:nth-child(3) {
+    padding-left: 32px;
+}
+/* Hover effect */
+.child-rows tr:hover {
+    background-color: none;
+}
+.balance-sheet-table tr:hover {
+    background-color: #EFF6FB;
+}
+
+.balance-sheet-table tr.child-rows:hover {
+    background-color: transparent;
+}
+
+.balance-sheet-table tr.child-rows td:hover {
+    background-color: transparent;
+}
+
+.balance-sheet-table tr:hover td,
+.balance-sheet-table td:hover {
+    background-color: #EFF6FB;
+}
+
+.balance-sheet-table tr.child-rows:hover td,
+.balance-sheet-table tr.child-rows td:hover {
+    background-color: transparent;
+}
+
+.balance-sheet-table tr.child-rows table tr:hover td,
+.balance-sheet-table tr.child-rows table td:hover {
+    background-color: #EFF6FB;
+}
+
+.balance-sheet-table tr.child-rows table tr.child-rows:hover td,
+.balance-sheet-table tr.child-rows table tr.child-rows td:hover {
+    background-color: transparent;
+}
+
+.balance-sheet-table tr.child-rows table tr.child-rows table tr:hover td,
+.balance-sheet-table tr.child-rows table tr.child-rows table td:hover {
+    background-color: #EFF6FB;
+}
+
+.balance-sheet-table tr.child-rows table tr.child-rows table tr.child-rows:hover td,
+.balance-sheet-table tr.child-rows table tr.child-rows table tr.child-rows td:hover {
+    background-color: transparent;
+}
+
+.balance-sheet-table tr.child-rows table tr.child-rows table tr.child-rows table tr:hover td,
+.balance-sheet-table tr.child-rows table tr.child-rows table tr.child-rows table td:hover {
+    background-color: #EFF6FB;
+}
+
+.balance-sheet-table tr.child-rows table tr.child-rows table tr.child-rows table tr.child-rows:hover td,
+.balance-sheet-table tr.child-rows table tr.child-rows table tr.child-rows table tr.child-rows td:hover {
+    background-color: transparent;
+}
+
+.child-rows td:first-child{
+    padding: 0px;
+}
+
+/* Collapsible icon */
+.collapse-icon {
+    cursor: pointer;
+    padding: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Input field */
+.edit-input {
+    width: 100%;
+    padding: 4px 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    text-align: right;
+    font-size: 14px;
+}
+
+.edit-input:focus {
+    outline: none;
+    border-color: #1976d2;
+}
+
+/* remove arrows from input field Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* remove arrows from input field Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Negative values */
+.negative {
+    color: #d32f2f;
+}
+
+/* Collapsed content */
+.collapsed {
+    display: none;
+}
+
+/* Total rows */
+.total-row {
+    font-weight: 600;
+}
+
+/* Ensure header cells maintain their background */
+.balance-sheet-table th:hover {
+    background-color: #DFEDF8;
+}
+
+.balance-sheet-table .toprow th:hover {
+    background-color: #fff;
+}
+
