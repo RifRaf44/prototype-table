@@ -5,14 +5,14 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: 'IngMe',-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.5;
     color: #333;
 }
 
 .container {
     margin: 0 24px 0 24px;
-    padding: 20px;
+    margin-bottom: 120px;
 }
 
 h1 {
@@ -80,57 +80,62 @@ td.edit-column , th.edit-column {
 }
 
 /* Level 0 (Headers) */
-.row-level-0 {
+.level-0 {
     background-color: #e3f2fd;
 }
 
-.row-level-0 th {
+.level-0 th {
     font-weight: 600;
-/* Secondary/Sky/Sky200 */
-background: #DFEDF8;
-/* Primary/Gray200 */
-border-bottom: 1px solid #D9D9D9;
-
+    background: #DFEDF8;
+    border-bottom: 1px solid #D9D9D9;
 }
 
 td, th {
     border-right: 1px solid #D9D9D9;
 }
+
 td:first-child, th:first-child {
     border-right: none;
 }
 
 /* Level 1 */
-.row-level-1 {
+.level-1 {
     background-color: #EDEDF5;
 }
 
-.row-level-1 td:nth-child(3) {
+.level-1 td:nth-child(3) {
     padding-left: 8px;
 }
 
 /* Level 2 */
-.row-level-2 {
+.level-2 {
     background-color: #ffffff;
     font-weight: 600;
 }
-.row-level-2 td:nth-child(3) {
+
+.level-2 td:nth-child(3) {
     padding-left: 16px;
 }
 
-.row-level-3 {
+/* Level 3 */
+.level-3 {
     background-color: #f9f9f9;
 }
-.row-level-3 td:nth-child(3) {
+
+.level-3 td:nth-child(3) {
     padding-left: 24px;
 }
-.row-level-4 td:nth-child(3) {
+
+/* Level 4 */
+.level-4 td:nth-child(3) {
     padding-left: 32px;
 }
+
 /* Hover effect */
 .child-rows tr:hover {
     background-color: none;
 }
+
 .balance-sheet-table tr:hover {
     background-color: #EFF6FB;
 }
@@ -183,7 +188,7 @@ td:first-child, th:first-child {
     background-color: transparent;
 }
 
-.child-rows td:first-child{
+.child-rows td:first-child {
     padding: 0px;
 }
 
@@ -198,6 +203,7 @@ td:first-child, th:first-child {
 
 /* Input field */
 .edit-input {
+    font-family: 'IngMe',-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     width: 100%;
     padding: 4px 8px;
     border: 1px solid #e0e0e0;
@@ -211,16 +217,20 @@ td:first-child, th:first-child {
     border-color: #1976d2;
 }
 
+input:read-only{
+    background-color: #f0f0f0;
+}
+
 /* remove arrows from input field Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* remove arrows from input field Firefox */
 input[type=number] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
 
 /* Negative values */
@@ -245,5 +255,55 @@ input[type=number] {
 
 .balance-sheet-table .toprow th:hover {
     background-color: #fff;
+}
+
+.control-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 8px 24px;
+    background-color: #F9F9F9;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.25);
+    z-index: 1000;
+    margin-left: 24px;
+    margin-right: 24px
+    ;
+}
+
+.totals-container {
+    display: flex;
+    gap: 24px;
+    align-items:center;
+
+}
+.activa-passiva-totals-container{
+    display: flex;
+    gap:8px;
+}
+
+.total-badge{
+    padding: 2px 4px;
+    border-radius: 4px;
+    background-color: hsl(0, 0%, 95%);
+}
+
+.save-button {
+    background-color: #FF6200;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.save-button:hover {
+    background-color: #e55800;
 }
 

@@ -7,7 +7,7 @@ const data = [
         level: 0,
         isCollapsible: true,
         isTotal: true,
-        years: [0, 0, 0, 0, 0],
+        years: [3650000, 3717000, 3785070, 3854234, 3924510],
         children: [
             {
                 id: 'oprichtingskosten',
@@ -25,7 +25,7 @@ const data = [
                 level: 1,
                 isCollapsible: true,
                 isTotal: true,
-                years: [0, 0, 0, 0, 0],
+                years: [1500000, 1530000, 1560600, 1591812, 1623648],
                 children: [
                     {
                         id: 'immateriele-vaste-activa',
@@ -53,7 +53,7 @@ const data = [
                                 isCollapsible: false,
                                 isTotal: false,
                                 years: [1500000, 1530000, 1560600, 1591812, 1623648],
-                                editableValue: 1500000
+                                editableValue: 0
                             },
                             {
                                 id: 'installaties',
@@ -63,7 +63,7 @@ const data = [
                                 isCollapsible: false,
                                 isTotal: false,
                                 years: [850000, 867000, 884340, 902027, 920067],
-                                editableValue: 850000
+                                editableValue: 0
                             },
                             {
                                 id: 'meubilair',
@@ -73,7 +73,7 @@ const data = [
                                 isCollapsible: false,
                                 isTotal: false,
                                 years: [250000, 255000, 260100, 265302, 270608],
-                                editableValue: 250000
+                                editableValue: 0
                             },
                             {
                                 id: 'leasing',
@@ -92,7 +92,7 @@ const data = [
                                 isCollapsible: false,
                                 isTotal: false,
                                 years: [180000, 183600, 187272, 191017, 194838],
-                                editableValue: 180000
+                                editableValue: 0
                             },
                             {
                                 id: 'activa-aanbouw',
@@ -189,7 +189,7 @@ const data = [
                                         isCollapsible: false,
                                         isTotal: false,
                                         years: [450000, 459000, 468180, 477544, 487095],
-                                        editableValue: 450000
+                                        editableValue: 0
                                     },
                                     {
                                         id: 'vorderingen-borgtochten',
@@ -384,7 +384,7 @@ const data = [
                                 isCollapsible: false,
                                 isTotal: false,
                                 years: [1200000, 1224000, 1248480, 1273450, 1298919],
-                                editableValue: 1200000
+                                editableValue: 0
                             },
                         ],
                     },
@@ -396,7 +396,7 @@ const data = [
                         isCollapsible: false,
                         isTotal: false,
                         years: [950000, 969000, 988380, 1008150, 1028313],
-                        editableValue: 950000
+                        editableValue: 0
                     },
                     {
                         id: 'overlopende-rekeningen',
@@ -935,7 +935,7 @@ const data = [
                         isCollapsible: false,
                         isTotal: false,
                         years: [1800000, 1836000, 1872720, 1910174, 1948378],
-                        editableValue: 1800000
+                        editableValue: 0
                     },
                     {
                         id: 'voorraad-toename',
@@ -963,7 +963,7 @@ const data = [
                         isCollapsible: false,
                         isTotal: false,
                         years: [350000, 357000, 364140, 371423, 378851],
-                        editableValue: 350000
+                        editableValue: 0
                     },
                     {
                         id: 'niet-recurrente-opbrengsten',
@@ -1357,14 +1357,13 @@ const data = [
 ];
 
 // Helper functions
-function formatNumber(number) {
-    return number === 0 ? '' : number.toLocaleString('nl-NL', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-    });
+function formatNumber(num) {
+    if (num === 0 || num === null || num === undefined) return '-';
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '');
 }
 
 function calculateTotal(children) {
+    if (!children || !Array.isArray(children)) return 0;
     return children.reduce((acc, child) => {
         if (child.isTotal && child.children) {
             return acc + calculateTotal(child.children);
@@ -1373,9 +1372,125 @@ function calculateTotal(children) {
     }, 0);
 }
 
+function getRowValue(row) {
+    if (row && row.isTotal && row.children) {
+        return calculateTotal(row.children);
+    }
+    return Number(row?.editableValue || 0);
+}
+
+function calculateRowValueByCode(code) {
+    // Special formulas for specific codes
+    if (code === '9905') {
+        // Te bestemmen winst/verlies = W/V van het boekjaar (9904) + Onttrekking belastingvrije (789) - Overboeking belastingvrije (689)
+        const wvBoekjaarRow = findRowByCode('9904');
+        const onttrekkingRow = findRowByCode('789');
+        const overboekingRow = findRowByCode('689');
+        
+        return getRowValue(wvBoekjaarRow) + getRowValue(onttrekkingRow) - getRowValue(overboekingRow);
+    }
+    else if (code === '9904') {
+        // W/V van het boekjaar = W/V voor belasting (9903) + Uitgestelde belastingen (780) - Overboeking uitgestelde (680) - Belastingen (67/77)
+        const wvVoorBelastingRow = findRowByCode('9903');
+        const uitgesteldeRow = findRowByCode('780');
+        const overboekingUitgesteldeRow = findRowByCode('680');
+        const belastingenRow = findRowByCode('67/77');
+        
+        return getRowValue(wvVoorBelastingRow) + getRowValue(uitgesteldeRow) - getRowValue(overboekingUitgesteldeRow) + getRowValue(belastingenRow);
+    }
+    
+    // Normal calculation for other codes
+    const row = findRowByCode(code);
+    return getRowValue(row);
+}
+
+function findRowByCode(code) {
+    function searchInRows(rows) {
+        for (const row of rows) {
+            if (row.code === code) return row;
+            if (row.children) {
+                const found = searchInRows(row.children);
+                if (found) return found;
+            }
+        }
+        return null;
+    }
+    return searchInRows(data);
+}
+
+function updateControlBar() {
+    // Calculate totals from input fields using calculateTotal function
+    const activaRow = findRowByCode('20/58');
+    const passivaRow = findRowByCode('10/49');
+    
+    const resultRow9905 = findRowByCode('9905');
+    const resultRow6947 = findRowByCode('694/7');
+
+    const activaTotal = activaRow && activaRow.children ? calculateTotal(activaRow.children) : 0;
+    const passivaTotal = passivaRow && passivaRow.children ? calculateTotal(passivaRow.children) : 0;
+    const controlTotal = resultRow9905 && resultRow6947 ? (getRowValue(resultRow9905)-getRowValue(resultRow6947)) : 0;
+
+    const controlBar = document.getElementById('controlBar') || createControlBar();
+    const activaElement = controlBar.querySelector('#activa-total');
+    const passivaElement = controlBar.querySelector('#passiva-total');
+    const controleElement = controlBar.querySelector('#controle-total');
+
+    activaElement.textContent = `Activa: ${formatNumber(activaTotal)}`;
+    passivaElement.textContent = `Passiva: ${formatNumber(passivaTotal)}`;
+    controleElement.textContent = `Controle resultatenrekening: ${formatNumber(controlTotal)}`;
+
+    const activaTotalElement = document.getElementById('activa-total');
+    const passivaTotalElement = document.getElementById('passiva-total');
+    const controleTotalElement = document.getElementById('controle-total');
+
+    let backgroundColor = activaTotal === passivaTotal ? '#D6EADC' : '#EECCE0';
+
+    activaTotalElement.style.backgroundColor = backgroundColor;
+    passivaTotalElement.style.backgroundColor = backgroundColor;
+    
+    // Use a different variable or reassign for the control total background
+    backgroundColor = (controlTotal == 0) ? '#D6EADC' : '#EECCE0';
+    controleTotalElement.style.backgroundColor = backgroundColor;
+}
+
+function createControlBar() {
+    const controlBar = document.createElement('div');
+    controlBar.id = 'controlBar';
+    controlBar.className = 'control-bar';
+
+    const totalsContainer = document.createElement('div');
+    const activaPassivaTotalsContainer = document.createElement('div');
+    activaPassivaTotalsContainer. className = 'activa-passiva-totals-container'
+    totalsContainer.className = 'totals-container';
+
+    const activaTotal = document.createElement('span');
+    activaTotal.id = 'activa-total';
+    activaTotal.className = 'total-badge';
+    const passivaTotal = document.createElement('span');
+    passivaTotal.id = 'passiva-total';
+    passivaTotal.className = 'total-badge';
+    const controleTotal = document.createElement('span');
+    controleTotal.id = 'controle-total';
+    controleTotal.className = 'total-badge';
+
+    const saveButton = document.createElement('button');
+    saveButton.className = 'save-button';
+    saveButton.textContent = 'Save column';
+
+    activaPassivaTotalsContainer.appendChild(activaTotal);
+    activaPassivaTotalsContainer.appendChild(passivaTotal);
+    totalsContainer.appendChild(activaPassivaTotalsContainer);
+    totalsContainer.appendChild(controleTotal);
+    controlBar.appendChild(totalsContainer);
+    totalsContainer.appendChild(saveButton);
+
+    document.body.appendChild(controlBar);
+    return controlBar;
+}
+
 function createRow(row) {
     const tr = document.createElement('tr');
-    tr.className = `row-level-${row.level}`;
+    tr.className = `level-${row.level}`;
     if (row.isTotal) tr.classList.add('total-row');
 
     // Icon column
@@ -1407,25 +1522,29 @@ function createRow(row) {
         const yearCell = document.createElement(row.level === 0 ? 'th' : 'td');
         yearCell.className = 'year-column';
         yearCell.textContent = formatNumber(year);
-        if (year < 0) yearCell.classList.add('negative');
         tr.appendChild(yearCell);
     });
 
     // Edit column
     const editCell = document.createElement(row.level === 0 ? 'th' : 'td');
     editCell.className = 'edit-column';
-    if (row.isTotal) {
-        const total = document.createElement('span');
-        total.textContent = formatNumber(calculateTotal(row.children));
-        editCell.appendChild(total);
+    const input = document.createElement('input');
+    input.type = 'number';
+    input.className = 'edit-input';
+    
+    // Special handling for codes 9905 and 9904
+    if (row.code === '9905' || row.code === '9904') {
+        input.value = formatNumber(calculateRowValueByCode(row.code));
+        input.readOnly = true;
+    } else if (row.isTotal) {
+        input.value = formatNumber(calculateTotal(row.children));
+        input.readOnly = true;
     } else {
-        const input = document.createElement('input');
-        input.type = 'number';
-        input.className = 'edit-input';
         input.value = row.editableValue || '';
         input.onchange = (e) => handleValueChange(row.id, e.target.value);
-        editCell.appendChild(input);
     }
+    
+    editCell.appendChild(input);
     tr.appendChild(editCell);
 
     return tr;
@@ -1456,8 +1575,9 @@ function handleValueChange(id, value) {
     }
     updateRow(data);
 
-    // Re-render the table
+    // Re-render the table and update control bar
     renderTable();
+    updateControlBar();
 }
 
 function renderTable() {
@@ -1532,5 +1652,8 @@ function renderTable() {
     data.forEach(row => renderRow(row));
 }
 
-// Initialize the table
-document.addEventListener('DOMContentLoaded', renderTable); 
+// Initialize the table and control bar
+document.addEventListener('DOMContentLoaded', () => {
+    renderTable();
+    updateControlBar();
+}); 
