@@ -1505,17 +1505,17 @@ function createRow(row) {
     }
     tr.appendChild(iconCell);
 
-    // Code column
-    const codeCell = document.createElement(row.level === 0 ? 'th' : 'td');
-    codeCell.className = 'code-column';
-    codeCell.textContent = row.code || '';
-    tr.appendChild(codeCell);
-
     // Description column
     const descCell = document.createElement(row.level === 0 ? 'th' : 'td');
     descCell.className = 'description-column';
     descCell.textContent = row.label;
     tr.appendChild(descCell);
+
+    // Code column
+    const codeCell = document.createElement(row.level === 0 ? 'th' : 'td');
+    codeCell.className = 'code-column';
+    codeCell.textContent = row.code || '';
+    tr.appendChild(codeCell);
 
     // Year columns
     row.years.forEach(year => {
